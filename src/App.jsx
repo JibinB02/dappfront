@@ -10,7 +10,7 @@ import Admin from "./pages/admin"
 
 const App = () => {
   const [user, setUser] = useState({ name: '', aadhar: '' });
-  const [admin,setAdmin]  = useState({admin:'',adminid:''});
+  const [admin,setAdmin]  = useState({admin:'',adminpass:''});
   return (
     <>
       <Navbar user ={user} admin = {admin}/>

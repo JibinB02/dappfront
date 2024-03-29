@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AdminSignin = ({ setAdmin }) => {
     const [admin, setAdminName] = useState('');
-    const [adminid, setAdminID] = useState('');
+    const [adminpass, setAdminID] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -21,20 +21,20 @@ const AdminSignin = ({ setAdmin }) => {
   
           if (existingAdminError) {
             const { data: newAdmin } = await supabase.from('admin').insert([
-              { admin, adminid }
+              { admin, adminpass}
           ]);
-          setAdmin({ admin, adminid });
+          setAdmin({ admin, adminpass });
           navigate("/admin");
-          console.log('Admin data inserted:', adminid);
+          console.log('Admin data inserted:', adminpass);
           
       }
   
           // If admin exists and provided admin name and ID match
           if (existingAdmin) {
-            if (existingAdmin && existingAdmin.admin == admin && existingAdmin.adminid == adminid) {
+            if (existingAdmin && existingAdmin.admin == admin && existingAdmin.adminpass == adminpass) {
               console.log('existing admin',existingAdmin.admin)
               console.log("admin",admin)
-              setAdmin({ admin, adminid });
+              setAdmin({ admin, adminpass });
               // Redirect to the admin page
               navigate('/admin');
               return;
@@ -42,7 +42,7 @@ const AdminSignin = ({ setAdmin }) => {
           
           // If admin exists but provided admin name and ID do not match
          
-            else if (existingAdmin && (existingAdmin.admin == admin && existingAdmin.adminid != adminid || existingAdmin.admin != admin && existingAdmin.adminid == adminid)) {
+            else if (existingAdmin && (existingAdmin.admin == admin && existingAdmin.adminpass != adminpass || existingAdmin.admin != admin && existingAdmin.adminpass == adminpass)) {
               
               setError('An admin already exists');
               return;
@@ -75,9 +75,9 @@ const AdminSignin = ({ setAdmin }) => {
                             />
                             <input
                                 className='border p-2 mb-4 w-full'
-                                type="text"
-                                placeholder='Admin ID'
-                                value={adminid}
+                                type="password"
+                                placeholder='Admin Password'
+                                value={adminpass}
                                 onChange={(e) => setAdminID(e.target.value)}
                             />
                         </div>

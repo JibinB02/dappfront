@@ -6,7 +6,8 @@ import {Link,useLocation} from "react-router-dom";
 
 
 const Navbar = ({user,admin}) => {
-  console.log("user",user);
+  // console.log("user",user);
+  // console.log("admin",admin)
   const location = useLocation();
   const isProfilePage = location.pathname === '/profile';
   const isSigninPage = location.pathname === '/Signin';
@@ -54,7 +55,7 @@ const Navbar = ({user,admin}) => {
             {isAdminPage && admin && (
               <div>
               <p>Admin Name: {admin.admin}</p>
-              <p>Aadhar: {admin.adminid}</p>
+             
             </div>
             )}
 
