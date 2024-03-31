@@ -3,7 +3,7 @@ import trees from '../assets/logo.png';
 import supabase from '../../supaBase';
 import { useNavigate } from 'react-router-dom';
 
-const AdminSignin = ({ setAdmin }) => {
+const AdminSignin = () => {
     const [admin, setAdminName] = useState('');
     const [adminpass, setAdminID] = useState('');
     const [error, setError] = useState('');
@@ -23,7 +23,7 @@ const AdminSignin = ({ setAdmin }) => {
             const { data: newAdmin } = await supabase.from('admin').insert([
               { admin, adminpass}
           ]);
-          setAdmin({ admin, adminpass });
+          localStorage.setItem('admin', JSON.stringify({admin , adminpass}));
           navigate("/admin");
           console.log('Admin data inserted:', adminpass);
           
@@ -34,7 +34,7 @@ const AdminSignin = ({ setAdmin }) => {
             if (existingAdmin && existingAdmin.admin == admin && existingAdmin.adminpass == adminpass) {
               console.log('existing admin',existingAdmin.admin)
               console.log("admin",admin)
-              setAdmin({ admin, adminpass });
+              localStorage.setItem('admin', JSON.stringify({admin , adminpass}));
               // Redirect to the admin page
               navigate('/admin');
               return;

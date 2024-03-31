@@ -11,6 +11,7 @@ const Admin = () => {
   const [party, setParty] = useState([[]]);
   const [district, setDistrict] = useState("");
   const [hour, setHour] = useState("");
+
   
 
   const onSubmit = async (event) => {

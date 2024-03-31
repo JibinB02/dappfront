@@ -9,17 +9,15 @@ import Admin from "./pages/admin"
 
 
 const App = () => {
-  const [user, setUser] = useState({ name: '', aadhar: '' });
-  const [admin,setAdmin]  = useState({admin:'',adminpass:''});
   return (
     <>
-      <Navbar user ={user} admin = {admin}/>
+      <Navbar />
       <div className="max-w-7xl mx-auto pt-20 px-6">
       <Routes>
         <Route path="/" element = {<Home/>}/>
-        <Route path="/Signin" element={<Signin setUser={setUser} />} /> 
+        <Route path="/Signin" element={<Signin/>} /> 
         <Route path="/profile" element={<Profile/>} />
-        <Route path="/adminsignin" element={<AdminSignin setAdmin = {setAdmin} />} />
+        <Route path="/adminsignin" element={<AdminSignin/>} />
         <Route path="/admin" element={<Admin/>} />
         </Routes>        
       </div>

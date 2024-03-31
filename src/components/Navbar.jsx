@@ -1,11 +1,11 @@
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import logo from "../assets/logo.png";
 import { navItems } from "../constants";
 import {Link,useLocation} from "react-router-dom";
 
 
-const Navbar = ({user,admin}) => {
+const Navbar = () => {
   // console.log("user",user);
   // console.log("admin",admin)
   const location = useLocation();
@@ -13,12 +13,30 @@ const Navbar = ({user,admin}) => {
   const isSigninPage = location.pathname === '/Signin';
   const isHomePage = location.pathname === '/';
   const isAdminPage = location.pathname === '/admin';
+  const [user,setUser] = useState({});
+  const [admin,setAdmin] = useState({});
 
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
 
   const toggleNavbar = () => {
     setMobileDrawerOpen(!mobileDrawerOpen);
   };
+
+  useEffect(() => {
+    // Retrieve user data from local storage
+    const storedUser = localStorage.getItem('user');
+    const storedAdmin = localStorage.getItem('admin');
+    if (storedUser) {
+      const userData = JSON.parse(storedUser);
+      console.log("1",userData)
+      setUser(userData);
+      // Do something with userData, such as updating the state
+    }
+    if (storedAdmin) {
+      const adminData = JSON.parse(storedAdmin);
+      setAdmin(adminData)
+    }
+  }, []);
 
   return (
     <nav className="sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-neutral-700/80">

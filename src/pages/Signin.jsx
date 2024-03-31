@@ -4,7 +4,7 @@ import trees from '../assets/logo.png';
 import supabase from '../../supaBase';
 import { useNavigate } from 'react-router-dom';
 
-const Signin = ({setUser}) => {
+const Signin = () => {
   const [name, setName] = useState('');
   const [aadhar, setAadharNumber] = useState('');
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Signin = ({setUser}) => {
       console.error('Error inserting user data:', error.message);
     }
 
-    setUser({ name, aadhar });
+    localStorage.setItem('user', JSON.stringify({ name, aadhar }));
     navigate('/profile');
   };
 
